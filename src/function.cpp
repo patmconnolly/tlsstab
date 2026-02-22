@@ -101,6 +101,8 @@ namespace function {
 		std::cout << " -h, --help             Displays this help screen and exits." << std::endl;
 		std::cout << " -v, --version          Displays the version number and exits." << std::endl;
 		std::cout << " -d, --debug            Displays logs as they occur to stdout, still logs to log file." << std::endl;
+		std::cout << " -r, --retcode          If not supported in any protocol checked, or error occurs, retcode 1 is returned." << std::endl;
+		std::cout << "                        (For automation purposes.)" << std::endl;
 		std::cout << "" << std::endl;
 		//std::cout << " -i, --insecure      " << std::endl;
 		//std::cout << " --sslall     " << std::endl;
@@ -143,6 +145,10 @@ namespace function {
 			else if (arg == "-d" || arg == "--debug") {
 				function::DEBUG = true;
 				function::debug("DEBUG FLAG SET, VERBOSE OUTPUT SENT TO STDOUT.");
+			}
+			else if (arg == "-r" || arg == "--retcode") {
+				function::RETCODE = true;
+				function::debug("Set to return pass/fail as retcode.");
 			}
 			/*else if (function::toLower(arg) == "--insecure" || function::toLower(arg) == "-i") {
 				function::INSECURE = true;
@@ -234,6 +240,7 @@ namespace function {
 	bool CHECKVERSION = false;        // If version information is going to be displayed.
 	bool DEBUG = false;               // Global variable for debugging.
 	bool KILL = false;                // Determines if end should occur as soon as possible.
+	bool RETCODE = false;             //Determines if retcode is the supported/not supported output.
 	int EXITCODE = 0;             // Return code of the program.
 
 	std::string URL = function::INVALID_URL;

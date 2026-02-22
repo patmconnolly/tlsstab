@@ -37,8 +37,9 @@ int main(int argc, char* argv[]) {
 
 	if (not function::KILL) {
 		function::debug("Beginning stab.");
-		//Commenting out insecure and SSL versions.
-		//Limited support paths.
+		bool passfail = true;
+		// Commenting out insecure and SSL versions.
+		// Limited support paths.
 		/*if (function::INSECURE || function::FULL)
 		{
 			function::debug("-Executing Insecure.");
@@ -57,22 +58,26 @@ int main(int argc, char* argv[]) {
 		if (function::TLS10 || function::FULL)
 		{
 			function::debug("-Executing TLSv1.0.");
-			stab::secure(CURL_SSLVERSION_TLSv1_0, CURL_SSLVERSION_MAX_TLSv1_0, "TLSv1.0");
+			passfail = stab::secure(CURL_SSLVERSION_TLSv1_0, CURL_SSLVERSION_MAX_TLSv1_0, "TLSv1.0");
+			if (function::RETCODE and function::EXITCODE <= 0 and not passfail) { function::EXITCODE++; }
 		}
 		if (function::TLS11 || function::FULL)
 		{
 			function::debug("-Executing TLSv1.1.");
-			stab::secure(CURL_SSLVERSION_TLSv1_1, CURL_SSLVERSION_MAX_TLSv1_1, "TLSv1.1");
+			passfail = stab::secure(CURL_SSLVERSION_TLSv1_1, CURL_SSLVERSION_MAX_TLSv1_1, "TLSv1.1");
+			if (function::RETCODE and function::EXITCODE <= 0 and not passfail) { function::EXITCODE++; }
 		}
 		if (function::TLS12 || function::FULL)
 		{
 			function::debug("-Executing TLSv1.2.");
-			stab::secure(CURL_SSLVERSION_TLSv1_2, CURL_SSLVERSION_MAX_TLSv1_2, "TLSv1.2");
+			passfail = stab::secure(CURL_SSLVERSION_TLSv1_2, CURL_SSLVERSION_MAX_TLSv1_2, "TLSv1.2");
+			if (function::RETCODE and function::EXITCODE <= 0 and not passfail) { function::EXITCODE++; }
 		}
 		if (function::TLS13 || function::FULL)
 		{
 			function::debug("-Executing TLSv1.3.");
-			stab::secure(CURL_SSLVERSION_TLSv1_3, CURL_SSLVERSION_MAX_TLSv1_3, "TLSv1.3");
+			passfail = stab::secure(CURL_SSLVERSION_TLSv1_3, CURL_SSLVERSION_MAX_TLSv1_3, "TLSv1.3");
+			if (function::RETCODE and function::EXITCODE <= 0 and not passfail) { function::EXITCODE++; }
 		}
 		function::debug("Stab complete.");
 	}

@@ -25,6 +25,7 @@ namespace function {
 	extern bool CHECKVERSION;        // If version information is going to be displayed.
 	extern bool DEBUG;               // Global variable for debugging.
 	extern bool KILL;                // Determines if end should occur as soon as possible.
+	extern bool RETCODE;             //Determines if retcode is the supported/not supported output.
 	extern int EXITCODE;             // Return code of the program.
 	const bool SILENT = false;       // Const silent flag, leaving in case a silent mode is desired in the future.
 

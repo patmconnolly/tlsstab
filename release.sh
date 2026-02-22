@@ -9,7 +9,7 @@ hour=$(date -u +%H)
 minute=$(date -u +%M)
 
 #Add each filename to be included in final package, separated by a space.
-IncludedFilenames="$basefilename"
+IncludedFilenames="$basefilename test_output.txt"
 
 if [[ "$branch" == "development" ]]; then
 	outputfile="$basefilename-$branch-$year.$month.$day-$hour.$minute.tar"

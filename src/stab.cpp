@@ -36,26 +36,29 @@ namespace stab {
     }
 
     bool insecure(){
+        bool passfail = true;
         auto handle = stab::buildHandle(function::HTTP, function::URL);
         curl_easy_setopt(handle, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_3);
-        stab::executeStab(handle, "HTTP");
+        passfail = stab::executeStab(handle, "HTTP");
         stab::stderr_buffer = "";
-        return true;
+        return passfail;
     }
 
 	bool secure(long minPROTOCOL, std::string protocolNAME){
+        bool passfail = true;
         auto handle = stab::buildHandle(function::HTTPS, function::URL);
         curl_easy_setopt(handle, CURLOPT_SSLVERSION, (long)minPROTOCOL);
-        stab::executeStab(handle, protocolNAME);
+        passfail = stab::executeStab(handle, protocolNAME);
         stab::stderr_buffer = "";
-        return true;
+        return passfail;
     }
     bool secure(long minPROTOCOL, long maxPROTOCOL, std::string protocolNAME){
+        bool passfail = true;
         auto handle = stab::buildHandle(function::HTTPS, function::URL);
         curl_easy_setopt(handle, CURLOPT_SSLVERSION, minPROTOCOL | maxPROTOCOL);
-        stab::executeStab(handle, protocolNAME);
+        passfail = stab::executeStab(handle, protocolNAME);
         stab::stderr_buffer = "";
-        return true;
+        return passfail;
     }
 
 
