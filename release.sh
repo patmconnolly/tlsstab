@@ -11,7 +11,7 @@ minute=$(date -u +%M)
 #Add each filename to be included in final package, separated by a space.
 IncludedFilenames="$basefilename"
 
-if [[ "$branch" == "dev" ]]; then
+if [[ "$branch" == "development" ]]; then
 	outputfile="$basefilename-$branch-$year.$month.$day-$hour.$minute.tar"
 elif [[ "$branch" == "nightly" ]]; then
 	outputfile="$basefilename-$branch-$year.$month.$day.tar"
