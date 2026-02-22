@@ -1,0 +1,7 @@
+.vs/
+include/version.hpp
+*.exe
+*.o
+obj/
+tlsstab
+test_output.txt
