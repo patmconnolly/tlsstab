@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <curl/curl.h>
 
 #include "include/function.hpp"
 #include "include/stab.hpp"
@@ -36,33 +37,42 @@ int main(int argc, char* argv[]) {
 
 	if (not function::KILL) {
 		function::debug("Beginning stab.");
-		if (function::INSECURE || function::FULL)
+		//Commenting out insecure and SSL versions.
+		//Limited support paths.
+		/*if (function::INSECURE || function::FULL)
 		{
 			function::debug("-Executing Insecure.");
-		}
-		if (function::SSL20 || function::FULL)
+			stab::insecure();
+		}*/
+		/*if (function::SSL20 || function::FULL)
 		{
 			function::debug("-Executing SSLv2.0.");
-		}
-		if (function::SSL30 || function::FULL)
+			stab::secure(CURL_SSLVERSION_SSLv2, "SSLv2.0");
+		}*/
+		/*if (function::SSL30 || function::FULL)
 		{
 			function::debug("-Executing SSLv3.0.");
-		}
+			stab::secure(CURL_SSLVERSION_SSLv3, "SSLv3.0");
+		}*/
 		if (function::TLS10 || function::FULL)
 		{
 			function::debug("-Executing TLSv1.0.");
+			stab::secure(CURL_SSLVERSION_TLSv1_0, CURL_SSLVERSION_MAX_TLSv1_0, "TLSv1.0");
 		}
 		if (function::TLS11 || function::FULL)
 		{
 			function::debug("-Executing TLSv1.1.");
+			stab::secure(CURL_SSLVERSION_TLSv1_1, CURL_SSLVERSION_MAX_TLSv1_1, "TLSv1.1");
 		}
 		if (function::TLS12 || function::FULL)
 		{
 			function::debug("-Executing TLSv1.2.");
+			stab::secure(CURL_SSLVERSION_TLSv1_2, CURL_SSLVERSION_MAX_TLSv1_2, "TLSv1.2");
 		}
 		if (function::TLS13 || function::FULL)
 		{
 			function::debug("-Executing TLSv1.3.");
+			stab::secure(CURL_SSLVERSION_TLSv1_3, CURL_SSLVERSION_MAX_TLSv1_3, "TLSv1.3");
 		}
 		function::debug("Stab complete.");
 	}

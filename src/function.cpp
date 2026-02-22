@@ -102,11 +102,11 @@ namespace function {
 		std::cout << " -v, --version          Displays the version number and exits." << std::endl;
 		std::cout << " -d, --debug            Displays logs as they occur to stdout, still logs to log file." << std::endl;
 		std::cout << "" << std::endl;
-		std::cout << " -i, --insecure      " << std::endl;
-		std::cout << " --sslall     " << std::endl;
+		//std::cout << " -i, --insecure      " << std::endl;
+		//std::cout << " --sslall     " << std::endl;
 		std::cout << " --tlsall     " << std::endl;
-		std::cout << " --ssl20     " << std::endl;
-		std::cout << " --ssl30     " << std::endl;
+		//std::cout << " --ssl20     " << std::endl;
+		//std::cout << " --ssl30     " << std::endl;
 		std::cout << " --tls10     " << std::endl;
 		std::cout << " --tls11     " << std::endl;
 		std::cout << " --tls12     " << std::endl;
@@ -114,11 +114,13 @@ namespace function {
 		std::cout << "" << std::endl;
 		std::cout << "Example Usage" << std::endl;
 		std::cout << "-------------------------------------------------------------------------------------------------------------------------------" << std::endl;
-		std::cout << " > tlsstab --insecure --sslall --tlsall https://example.com" << std::endl;
+		//std::cout << " > tlsstab --insecure --sslall --tlsall https://example.com" << std::endl;
+		std::cout << " > tlsstab --insecure --tlsall https://example.com" << std::endl;
 		std::cout << "" << std::endl;
 		std::cout << "Notes" << std::endl;
 		std::cout << "-------------------------------------------------------------------------------------------------------------------------------" << std::endl;
-		std::cout << " Default behavior is to check insecure, all SSL versions, and all TLS versions." << std::endl;
+		//std::cout << " Default behavior is to check insecure, all SSL versions, and all TLS versions." << std::endl;
+		std::cout << " Default behavior is to check all TLS versions." << std::endl;
 		std::cout << " Selecting a behavior flag overrides this behavior and only runs the versions explicetly called." << std::endl;
 		std::cout << " HTTP/HTTPS is removed from the URL specified and readded for the secure/insecure options." << std::endl;
 		std::cout << "" << std::endl;
@@ -142,20 +144,20 @@ namespace function {
 				function::DEBUG = true;
 				function::debug("DEBUG FLAG SET, VERBOSE OUTPUT SENT TO STDOUT.");
 			}
-			else if (function::toLower(arg) == "--insecure" || function::toLower(arg) == "-i") {
+			/*else if (function::toLower(arg) == "--insecure" || function::toLower(arg) == "-i") {
 				function::INSECURE = true;
 				function::debug("Set to check HTTP.");
 				function::FULL = false;
 				function::debug("Set to not do a complete check automatically.");
-			}
-			else if (function::toLower(arg) == "--sslall") {
+			}*/
+			/*else if (function::toLower(arg) == "--sslall") {
 				function::SSL20 = true;
 				function::debug("Set to check SSL 2.0.");
 				function::SSL30 = true;
 				function::debug("Set to check SSL 3.0.");
 				function::FULL = false;
 				function::debug("Set to not do a complete check automatically.");
-			}
+			}*/
 			else if (function::toLower(arg) == "--tlsall") {
 				function::TLS10 = true;
 				function::debug("Set to check TLS 1.0.");
@@ -168,18 +170,18 @@ namespace function {
 				function::FULL = false;
 				function::debug("Set to not do a complete check automatically.");
 			}
-			else if (function::toLower(arg) == "--ssl20") {
+			/*else if (function::toLower(arg) == "--ssl20") {
 				function::SSL20 = true;
 				function::debug("Set to check SSL 2.0.");
 				function::FULL = false;
 				function::debug("Set to not do a complete check automatically.");
-			}
-			else if (function::toLower(arg) == "--ssl30") {
+			}*/
+			/*else if (function::toLower(arg) == "--ssl30") {
 				function::SSL30 = true;
 				function::debug("Set to check SSL 3.0.");
 				function::FULL = false;
 				function::debug("Set to not do a complete check automatically.");
-			}
+			}*/
 			else if (function::toLower(arg) == "--tls10") {
 				function::TLS10 = true;
 				function::debug("Set to check TLS 1.0.");

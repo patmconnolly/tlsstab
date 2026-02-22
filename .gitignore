@@ -3,3 +3,5 @@ include/version.hpp
 *.exe
 *.o
 tests/
+obj/
+tlsstab

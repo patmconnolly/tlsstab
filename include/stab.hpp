@@ -17,6 +17,7 @@
 #define STAB_H
 
 #include <string>
+#include <curl/curl.h>
 
 // Add function declarations here.
 namespace stab {
@@ -31,6 +32,28 @@ namespace stab {
 	const std::string v30 = "3.0: ";
 	const std::string ENABLED = "ENABLED";
 	const std::string DISABLED = "DISABLED";
+	extern std::string stderr_buffer;
+
+	const std::string FAILTEXT_a = "SSL routines::no protocols available";
+	const std::string FAILTEXT_b = "TLS alert, handshake failure";
+	const std::string FAILTEXT_c = "SSL routines::unsupported protocol";
+	const std::string SUCCESSTEXT_a = "SSL connection using ";
+	const std::string SUCCESSTEXT_b = "ALPN: server accepted";
+
+	//Function Definitions
+	// URL in Global Variable, just need SSL/TLS and version.
+	auto buildHandle(std::string exec_header, std::string exec_url);
+	bool executeStab(auto handle, std::string protocolNAME);
+	bool insecure();
+	bool secure(long minPROTOCOL, std::string protocolNAME);
+	bool secure(long minPROTOCOL, long maxPROTOCOL, std::string protocolNAME);
+
+
+	//Discard HTML data as that is not needed. For CURL Calls.
+	size_t discard_data(void* buffer, size_t size, size_t nmemb, void* userp);
+
+	// Collect the verbose curl output as string instead of file.
+	static int debug_function(CURL* handle, curl_infotype type, char* data, size_t size, void* userp);
 }
 
 #endif // STAB_H
